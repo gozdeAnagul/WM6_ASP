@@ -1,0 +1,83 @@
+﻿@model List<Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<table class="table table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Doğum Tarihi</th>
+            <th>Telefon</th>
+            <th>Adres</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var current = Model[i];
+            <tr>
+                <th>@(i + 1)</th>
+                <td>@current.FirstName</td>
+                <td>@current.LastName</td>
+                <td>@current.HomePhone</td>
+                <td>@current.Address</td>
+                <td>
+                    <a href="@Url.Action("Detay", "Employee", new {id = current.EmployeeID})" class="btn btn-success">
+                        Detay
+                    </a>
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Sil","Employee",new {id=current.EmployeeID})" class="btn btn-danger">
+                        Sil
+                    </a>
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Guncelle","Employee",new {id=current.EmployeeID})" class="btn btn-warning">
+                        Güncelle
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@using (Html.BeginForm("Ekle", "Employee", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <div class="container">
+        <div class="row">
+            <br />
+
+            <div class="col-md-3">
+                <h4>Ad</h4>
+                @Html.TextBox("FirstName", "", new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-3">
+                <h4>Soyad</h4>
+                @Html.TextBox("LastName", "", new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-3">
+                <h4>Telefon</h4>
+                @Html.TextBox("HomePhone", "", new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-3">
+                <h4>Adres</h4>
+                @Html.TextBox("HomePhone", "", new { @class = "form-control" })
+            </div>
+
+        </div>
+        <br />
+
+        <div class="row">
+            <input type="submit" value="Çalışan Ekle" class="btn btn-info" />
+        </div>
+    </div>
+}

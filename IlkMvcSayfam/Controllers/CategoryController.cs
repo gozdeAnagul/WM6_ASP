@@ -10,6 +10,9 @@ namespace IlkMvcSayfam.Controllers
     public class CategoryController : Controller
     {
         // get: category
+        //bir sayfayı oluşturmak için action ihtiyaç var 
+        //action res. aşağıda tanımlı.
+        //method overloading yok çünkü kafası karışıyor. parametreleri | ile yollladığı için 
         public ActionResult Index()
         {
             var data = new NorthwindSabahEntities()
@@ -21,6 +24,7 @@ namespace IlkMvcSayfam.Controllers
 
         public ActionResult Detail(int? id)
         {
+            //id çubuğundan null yelmesin diye null kontrolü
             if (id == null) return RedirectToAction("Index");
 
             var data = new NorthwindSabahEntities().Categories.Find(id.Value);
@@ -59,6 +63,52 @@ namespace IlkMvcSayfam.Controllers
 
             }
             return RedirectToAction("Index");
+        }
+
+
+        //get ile gönderdiklerim aderes çubuğunda görülen verilerdir.
+        //daha az güvenliklidir
+        [HttpGet]
+        public ActionResult Update(int? id)
+        {
+            if (id == null)
+                return RedirectToAction("Index", "Category");
+            try
+            {
+                var data = new NorthwindSabahEntities().Categories.Find(id.Value);
+                if (data == null)
+                    return RedirectToAction("Index", "Category");
+                return View(data);
+
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Category");
+               
+            }
+               
+        }
+        [HttpPost]
+        public ActionResult Update(Category model)
+        {
+            try
+            {
+                var db = new NorthwindSabahEntities();
+                var data = db.Categories.Find(model.CategoryID);
+
+                if (data == null)
+                    return RedirectToAction("Index");
+                data.CategoryName = model.CategoryName;
+                data.Description = model.Description;
+                db.SaveChanges();
+                ViewBag.Message = "<span class='text text-success'>Update Successfully</span>";
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = $"<span class='text text-danger'>Update Error{ex.Message}</span> ";
+                return View(model);  
+            }
         }
 
         public JsonResult Categories()

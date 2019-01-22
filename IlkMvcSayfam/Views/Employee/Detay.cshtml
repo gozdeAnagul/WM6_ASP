@@ -1,0 +1,19 @@
+﻿@model Employee
+@{
+    ViewBag.Title = "Detay";
+}
+
+<h2>@Model.FirstName @Model.LastName Detay sayfasi</h2>
+@if (Model.ReportsTo != null)
+{
+    var data = new NorthwindSabahEntities().Employees.Find(Model.ReportsTo);
+
+    <h4>@data.FirstName @data.LastName kişisine bağlı çalışmaktadır</h4>
+}
+@if (Model.ReportsTo == null)
+{
+    <h4>Bu Kişi Patron</h4>
+}
+
+
+
