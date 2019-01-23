@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IlkMvcSayfam", "IlkMvcSayfam\IlkMvcSayfam.csproj", "{1D331CB2-80A7-4E42-BF41-257407ED4675}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ders2", "Ders2", "{CD961174-C8DB-4FEB-BEEA-B518A14B4557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxIslemleri", "AjaxIslemleri\AjaxIslemleri.csproj", "{C1EACC4B-C940-42A5-8B4C-2F8EEB211166}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{1D331CB2-80A7-4E42-BF41-257407ED4675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D331CB2-80A7-4E42-BF41-257407ED4675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D331CB2-80A7-4E42-BF41-257407ED4675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1EACC4B-C940-42A5-8B4C-2F8EEB211166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1EACC4B-C940-42A5-8B4C-2F8EEB211166}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1EACC4B-C940-42A5-8B4C-2F8EEB211166}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1EACC4B-C940-42A5-8B4C-2F8EEB211166}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C1EACC4B-C940-42A5-8B4C-2F8EEB211166} = {CD961174-C8DB-4FEB-BEEA-B518A14B4557}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6C2550A-4E85-4800-B9B4-9AFB5CF917E8}
