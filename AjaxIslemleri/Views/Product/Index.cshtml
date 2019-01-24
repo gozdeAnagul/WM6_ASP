@@ -14,17 +14,41 @@
                 <option value="1">a</option>
                 <option value="2">b</option>
                 <option value="3">c</option>
-               
+
             </select>
         </div>
     </div>
 </div>
 
+<div class="row" id="resultdiv">
+    <div class="col-md-12 ">
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Category Name</th>
+                    <th>Quantity Per Unit</th>
+                    <th>Unit Price</th>
+                    <th>Unit In Stock</th>
+                    <th>Unit on Order</th>
+                    <th>Reoder Level</th>
+                    <th>Discounted</th>
+                    <th>Added Date</th>
+                    <th>Supplier Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="resultbody"></tbody>
+        </table>
+    </div>
+
+</div>
+
 @section scripts
 {
-  
     <script>
-        $(function () {
+        $(function() {
             function init() {
                 $.ajax({
                     url: "@Url.Action("GetAllCategories","Product")",
@@ -32,26 +56,106 @@
                     dataType: "json"
                 }).done(function(e) {
                     if (e.success) {
-                        $('#cmbCategory').empty();
-                        $('#cmbCategory')
-                            .append($("<option></option>")
-                                .attr("value",0)
-                                .text("Kategorisi Yok"));
-                        $.each(e.data, function(key, value) {
-                            $('#cmbCategory')
-                                .append($("<option></option>")
-                                    .attr("value",value.CategoryID)
-                                    .text(value.CategoryName));
-                        });
+                        $("#cmbCategory").empty();
+                        $("#cmbCategory").append($("<option></option>")
+                            .attr("value", 0)
+                        .text("Kategorisi Yok"));
+                        $.each(e.data,
+                            function(key, value) {
+                                $('#cmbCategory')
+                                    .append($("<option></option>")
+                                        .attr("value", value.CategoryID)
+                                        .text(value.CategoryName));
+                            });
                     }
-                });
+                    });
             }
-            $("#cmbCategory").change(function() {
-                var id= $(this).val();
-
+            $("#cmbCategory").change(function () {
+                var id = $(this).val();
                 console.log($("#cmbCategory option:selected").val());
+                $.ajax({
+                    url: "@Url.Action("GetAllProducts", "Product")",
+                    method: "get",
+                    dataType: "json"
+                }).done(function(e) {
+                    if (e.success) {
+                        renderdata(e.data);
+                        $("#resultdiv").show(600);
+                    } else {
+                        alert(e.message);
+                    }
+                    });
             });
+
+            var btnSil = document.createElement("input");
+            $(btnSil).attr({
+                "type": "button",
+                "class": "btn btn-danger",
+                "value": "Delete",
+                "name": value.ProductID
+            }).on("click",
+                function () {
+                     var id = this.name;
+                     $.ajax({
+                         url: "@Url.Action("Delete","Product")",
+                         method: "post",
+                         dataType: "json",
+                         data: { id: id }
+
+                }).done(function (e) {
+                     alert(e.message);
+                     init();
+                        });
+
+                    var btnGuncelle = document.createElement("input");
+                        //$(btnGuncelle).attr({
+                        //    "type": "button",
+                        //    "class": "btn btn-warning",
+                        //    "value": "Update",
+                        //    "name": value.ProductID
+                        //}).on("click",
+                        //    function () {
+                        //
+                        //    });
+                });
             init();
+            function renderdata(data) {
+                $("#resultbody").empty();
+                $.each(data,
+                    function(key,value) {
+                        var tr = document.createElement("tr")
+                        var th = document.createElement("th");
+                        th.innerText = key + 1;
+                        var td = document.createElement("td");
+                        td.innerText = value.ProductName;
+                        var td2 = document.createElement("td");
+                        td2.innerText = value.CategoryName;
+                        var td3 = document.createElement("td");
+                        td3.innerText = value.QuantityPerUnit;
+                        var td4 = document.createElement("td");
+                        td4.innerText = value.UnitPriceFormatted;
+                        var td5 = document.createElement("td");
+                        td5.innerText = value.UnitsInStock;
+                        var td6 = document.createElement("td");
+                        td6.innerText = value.UnitsOnOrder;
+                        var td7 = document.createElement("td");
+                        td7.innerText = value.ReorderLevel;
+                        var td8 = document.createElement("td");
+                        td8.innerText = value.AddedDateFormatted;
+                        var td9 = document.createElement("td");
+                        td9.innerText = value.SupplierName;
+                        var td10 = document.createElement("td");
+                        td10.innerText = value.Discontinued.toString();
+                        var td11 = document.createElement("td");
+                        var a = document.createElement("a");
+                        $(a).attr("href", "@Url.Action("Detail", "Category")" + "/" + value.CategoryID).attr("class", "btn btn-success").html("Detail");
+                        $(a).appendTo($(td11));
+                        $(btnSil).appendTo($(td11));
+                        $(tr).append(th).append(td).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8).append(td9).append(td10).append(td11).appendTo($("#resultbody"));
+                    });
+            }
         });
     </script>
 }
+
+

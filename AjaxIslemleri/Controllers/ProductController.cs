@@ -10,7 +10,6 @@ namespace AjaxIslemleri.Controllers
 {
     public class ProductController : Controller
     {
-        // get: product
         public ActionResult Index()
         {
             return View();
@@ -40,51 +39,48 @@ namespace AjaxIslemleri.Controllers
                 return Json(new ResponseData()
                 {
                     success = false,
-                    message = $"bir hata olustu\n{ex.Message}"
+                    message = $"Bir hata oluştu!\n{ex.Message}"
                 }, JsonRequestBehavior.AllowGet);
             }
         }
 
         [HttpGet]
-        public JsonResult GetAllProduct()
+        public JsonResult GetAllProducts()
         {
             try
             {
                 var db = new NorthwindEntities();
-                var data = db.Products.OrderBy(x => x.ProductName)
-                    .ToList()
+                var data = db.Products.OrderBy(x => x.ProductName).ToList()
                     .Select(x => new ProductViewModel()
                     {
                         CategoryName = x.Category?.CategoryName,
-                        AddedDate = x.AddedDate,
-                        CategoryID = x.CategoryID,
                         ProductName = x.ProductName,
-                        UnitPrice = x.UnitPrice,
-                        UnitsInStock = x.UnitsInStock,
                         ProductID = x.ProductID,
+                        CategoryID = x.CategoryID,
+                        AddedDate = x.AddedDate,
                         AddedDateFormatted = $"{x.AddedDate:g}",
                         Discontinued = x.Discontinued,
-                        QuantityPerUnit = x.QuantityPerUnit,
-                        ReorderLevel = x.ReorderLevel,
-                        SupplierID = x.SupplierID,
-                        SupplierName = x.Supplier?.CompanyName,
+                        UnitPrice = x.UnitPrice,
                         UnitPriceFormatted = $"{x.UnitPrice:c2}",
+                        SupplierID = x.SupplierID,
                         UnitsOnOrder = x.UnitsOnOrder,
-
-                    })
-                    .ToList();
+                        UnitsInStock = x.UnitsInStock,
+                        SupplierName = x.Supplier?.CompanyName,
+                        ReorderLevel = x.ReorderLevel,
+                        QuantityPerUnit = x.QuantityPerUnit
+                    });
                 return Json(new ResponseData()
                 {
-                    data = data,
-                    success = false
+                    success = true,
+                    data = data
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 return Json(new ResponseData()
                 {
-                    message = $"{ex.Message}",
-                    success = false
+                    success = false,
+                    message = $"Bir hata oluştu!\n{ex.Message}"
                 }, JsonRequestBehavior.AllowGet);
             }
         }
