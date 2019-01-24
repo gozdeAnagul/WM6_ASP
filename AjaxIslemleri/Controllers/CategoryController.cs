@@ -106,7 +106,6 @@ namespace AjaxIslemler.Controllers
         }
 
         [HttpPost]
-
         public JsonResult Delete(int id)
         {
             try
@@ -127,6 +126,40 @@ namespace AjaxIslemler.Controllers
                 {
                     message = $"Bir hata oluştu {ex.Message}",
                     success = false,
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult Update(Category model)
+        {
+            try
+            {
+                var db = new NorthwindEntities();
+                var cat = db.Categories.Find(model.CategoryID);
+                if(cat==null)
+                {
+                    return Json(new ResponseData()
+                    {
+                        message = $"Kategori bulunamadı.",
+                        success = false,
+                    }, JsonRequestBehavior.AllowGet);
+                }
+                cat.Description = model.Description;
+                cat.CategoryName = model.CategoryName;
+                db.SaveChanges();
+                return Json(new ResponseData()
+                {
+                    message = $"{cat.CategoryName} isimli kategori başarıyla güncellendi",
+                    success = true,
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResponseData()
+                {
+                    message = $" Güncelleme Yapılamadı {ex.Message}",
+                    success = true,
                 }, JsonRequestBehavior.AllowGet);
             }
         }
