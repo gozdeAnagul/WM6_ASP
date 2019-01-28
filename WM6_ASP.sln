@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Layout", "Layout\Layout.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ders1", "Ders1", "{1C74F0D7-B55F-40E9-B880-3D28B33C76D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSiteProjects", "WebSiteProjects\WebSiteProjects.csproj", "{AAADD814-DBF8-4B45-A8EB-F32E7DF56D6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D461E93B-6BA4-4762-B185-3D3D17C6AF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D461E93B-6BA4-4762-B185-3D3D17C6AF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D461E93B-6BA4-4762-B185-3D3D17C6AF17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAADD814-DBF8-4B45-A8EB-F32E7DF56D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAADD814-DBF8-4B45-A8EB-F32E7DF56D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAADD814-DBF8-4B45-A8EB-F32E7DF56D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAADD814-DBF8-4B45-A8EB-F32E7DF56D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{1D331CB2-80A7-4E42-BF41-257407ED4675} = {1C74F0D7-B55F-40E9-B880-3D28B33C76D3}
 		{C1EACC4B-C940-42A5-8B4C-2F8EEB211166} = {CD961174-C8DB-4FEB-BEEA-B518A14B4557}
 		{D461E93B-6BA4-4762-B185-3D3D17C6AF17} = {06CF1A91-CD9E-418F-ADF1-866336599B3A}
+		{AAADD814-DBF8-4B45-A8EB-F32E7DF56D6A} = {06CF1A91-CD9E-418F-ADF1-866336599B3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6C2550A-4E85-4800-B9B4-9AFB5CF917E8}
