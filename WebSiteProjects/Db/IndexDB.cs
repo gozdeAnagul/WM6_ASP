@@ -12,8 +12,6 @@ namespace WebSiteProjects.Db
 
         }
         public Dictionary<string,string> ChooseList { get; set; }
-        public static Dictionary<string, string> WhyChooseUs()
-        {
-        }
+       
     }
 }
