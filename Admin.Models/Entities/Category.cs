@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Admin.Models.Entities
 {
     [Table("Categories")]
-   public class Category:BaseEntities<int>
+   public class Category:BaseEntity<int>
     {
         [StringLength(100,ErrorMessage ="Kategori adi 3-100 karakter arasında olmalıdır",MinimumLength =3)]
         [DisplayName("Kategori Adı")]

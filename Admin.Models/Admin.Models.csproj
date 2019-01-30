@@ -48,8 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\BaseEntities.cs" />
-    <Compile Include="Abstracts\BaseEntities2.cs" />
+    <Compile Include="Abstracts\BaseEntity.cs" />
+    <Compile Include="Abstracts\BaseEntity2.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Invoice.cs" />

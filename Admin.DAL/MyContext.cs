@@ -27,6 +27,18 @@ namespace Admin.DAL
             modelBuilder.Entity<Product>()
               .Property(x => x.SalesPrice)
               .HasPrecision(7, 2);
+
+            modelBuilder.Entity<Invoice>()
+              .Property(x => x.Quantity)
+              .HasPrecision(8, 4);
+
+            modelBuilder.Entity<Invoice>()
+              .Property(x => x.Price)
+              .HasPrecision(9, 2);
+
+            modelBuilder.Entity<Invoice>()
+              .Property(x => x.Discount)
+              .HasPrecision(3, 2);
         }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }

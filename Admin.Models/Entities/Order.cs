@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Admin.Models.Entities
 {
     [Table("Orders")]
-    public class Order:BaseEntities<long>
+    public class Order:BaseEntity<long>
     {
         public OrderTypes OrderTypes { get; set; }
         public virtual ICollection<Invoice> Invoices { get; set; } = new HashSet<Invoice>();

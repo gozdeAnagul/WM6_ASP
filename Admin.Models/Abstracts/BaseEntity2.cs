@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Admin.Models.Abstracts
 {
-    public abstract class BaseEntities2<T1,T2>:BaseEntities<T1>
+    public abstract class BaseEntities2<T1,T2>:BaseEntity<T1>
     {
         [Key]
         [Column(Order =2)]

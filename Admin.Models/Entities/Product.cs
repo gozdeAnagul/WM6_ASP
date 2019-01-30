@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Admin.Models.Entities
 {
     [Table("Products")]
-    public class Product:BaseEntities<Guid>
+    public class Product:BaseEntity<Guid>
     {
         public Product()
         {
