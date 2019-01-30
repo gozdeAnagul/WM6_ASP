@@ -26,8 +26,7 @@ namespace Admin.BLL.Repository
         {
             return DbObject.ToList();
         }
-
-        public List<T> GetAll(Func<T,bool> predicate)
+        public List<T> GetAll(Func<T, bool> predicate)
         {
             return DbObject.Where(predicate).ToList();
         }
@@ -35,12 +34,10 @@ namespace Admin.BLL.Repository
         {
             return await DbObject.ToListAsync();
         }
-
         public async Task<List<T>> GetAllAsync(Func<T, bool> predicate)
         {
             return await DbObject.Where(predicate).AsQueryable().ToListAsync();
         }
-
         public T GetById(params object[] keys)
         {
             return DbObject.Find(keys);
@@ -49,13 +46,11 @@ namespace Admin.BLL.Repository
         {
             return await DbObject.FindAsync(keys);
         }
-
         public int Insert(T entity)
         {
             DbObject.Add(entity);
             return DbContext.SaveChanges();
         }
-
         public void InsertForMark(T entity)
         {
             DbObject.Add(entity);
@@ -72,14 +67,13 @@ namespace Admin.BLL.Repository
         }
         public void DeleteForMark(T entity)
         {
-            DbObject.Add(entity);
+            DbObject.Remove(entity);
         }
         public async Task<int> DeleteAsync(T entity)
         {
             DbObject.Remove(entity);
             return await DbContext.SaveChangesAsync();
         }
-
         public int Update()
         {
             return DbContext.SaveChanges();
