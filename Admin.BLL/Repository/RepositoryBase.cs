@@ -11,7 +11,7 @@ using EntityState = System.Data.Entity.EntityState;
 
 namespace Admin.BLL.Repository
 {
-    public class RepositoryBase<T,TId> where T:BaseEntity<TId>
+    public class RepositoryBase<T,TId>:IDisposable where T:BaseEntity<TId>
     {
         protected internal static MyContext DbContext;
         private static DbSet<T> DbObject;
@@ -19,6 +19,9 @@ namespace Admin.BLL.Repository
         protected RepositoryBase()
         {
             DbContext = DbContext ?? new MyContext();
+            TimeSpan dd = DateTime.Now - DbContext.InstanceDate;
+            if (IsDisposed) DbContext = new MyContext();
+            if (dd.TotalMinutes > 30) DbContext = new MyContext();
             DbObject = DbContext.Set<T>();
         }
 
@@ -88,6 +91,13 @@ namespace Admin.BLL.Repository
             DbContext.Entry(entity).State = EntityState.Modified;
             entity.UpdatedDate = DateTime.Now;
             this.Update();
+        }
+
+        public bool IsDisposed { get; set; }
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+            this.IsDisposed = true;
         }
 
     }

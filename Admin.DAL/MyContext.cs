@@ -12,13 +12,14 @@ namespace Admin.DAL
     {
         public MyContext() : base("name=MyCon")
         {
+            this.InstanceDate = DateTime.Now;
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Category>()
                 .Property(x => x.TaxRate)
-                .HasPrecision(3, 2);
+                .HasPrecision(4, 2);
 
             modelBuilder.Entity<Product>()
                .Property(x => x.BuyPrice)
@@ -42,6 +43,7 @@ namespace Admin.DAL
         }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public DateTime InstanceDate { get; set; }
     }
 }
 
