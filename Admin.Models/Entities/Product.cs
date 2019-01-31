@@ -36,6 +36,7 @@ namespace Admin.Models.Entities
         [DisplayName("Fiyat Güncelleme Tarihi")]
         public DateTime LastPriceUpdateDate { get; set; }
         public Guid? SupProductId { get; set; }
+        [DisplayName("Kategori Adı")]
         public int CategoryId { get; set; }
 
         [StringLength(20)]

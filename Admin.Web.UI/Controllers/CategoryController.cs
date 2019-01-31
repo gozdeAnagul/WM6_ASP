@@ -34,7 +34,7 @@ namespace Admin.Web.UI.Controllers
                 if (model.SupCategoryId == 0) model.SupCategoryId = null;
                 if (!ModelState.IsValid)
                 {
-                    ModelState.AddModelError("CategoryName", "100 karakteri geçme kardeş");
+                    ModelState.AddModelError("CategoryName", "100 karakteri geçme.");
                     model.SupCategoryId = model.SupCategoryId ?? 0;
                     ViewBag.CategoryList = GetCategorySelectList();
                     return View(model);

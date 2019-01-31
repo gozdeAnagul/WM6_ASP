@@ -1,17 +1,14 @@
 ﻿<!DOCTYPE html>
-
 <html class="app-ui" lang="tr">
 <head>
-
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>@ViewBag.Title - WissenAkademie ASP.Net MVC</title>
 
-    <meta name="description" content="ASP.Net MVC ile tamplate giydirme eğitimi" />
-    <meta name="author" content="Gozde" />
+    <meta name="description" content="ASP.Net MVC ile template giydirme eğitimi" />
+    <meta name="author" content="Mesut" />
     <meta name="robots" content="noindex, nofollow" />
-
     <link rel="apple-touch-icon" href="~/assets/img/favicons/apple-touch-icon.png" />
     <link rel="icon" href="~/assets/img/favicons/favicon.ico" />
 
@@ -24,18 +21,16 @@
     <link rel="stylesheet" id="css-bootstrap" href="~/assets/css/bootstrap.css" />
     <link rel="stylesheet" id="css-app" href="~/assets/css/app.css" />
     <link rel="stylesheet" id="css-app-custom" href="~/assets/css/app-custom.css" />
-
     @RenderSection("top", false)
 </head>
 <body class="app-ui layout-has-drawer layout-has-fixed-header">
     <div class="app-layout-canvas">
         <div class="app-layout-container">
-
             <!-- Drawer -->
-            @{ Html.RenderAction("DrawerPartial", "Partial");}
+            @{Html.RenderAction("DrawerPartial", "Partial");}
             <!-- End drawer -->
             <!-- Header -->
-            @{ Html.RenderAction("HeaderPartial", "Partial");}
+            @{Html.RenderAction("HeaderPartial", "Partial");}
             <!-- End header -->
             <main class="app-layout-content">
                 <!-- Page Content -->
@@ -50,7 +45,7 @@
     <!-- .app-layout-canvas -->
     <!-- Apps Modal -->
     <!-- Opens from the button in the header -->
-    @{ Html.RenderAction("ModalPartial", "Partial");}
+    @{Html.RenderAction("ModalPartial", "Partial");}
     <!-- End Apps Modal -->
     <div class="app-ui-mask-modal"></div>
     <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
@@ -62,6 +57,6 @@
     <script src="~/assets/js/app.js"></script>
     <script src="~/assets/js/app-custom.js"></script>
 
-    @RenderSection("buttom", false)
+    @RenderSection("bottom", false)
 </body>
 </html>
