@@ -1,13 +1,12 @@
-﻿using Admin.BLL.Helpers;
-using Admin.BLL.Repository;
-using Admin.Models.Entities;
-using Admin.Models.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using Admin.BLL.Repository;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Admin.BLL.Helpers;
+using Admin.Models.Entities;
+using Admin.Models.ViewModels;
 
 namespace Admin.Web.UI.Controllers
 {
@@ -17,9 +16,12 @@ namespace Admin.Web.UI.Controllers
         public ActionResult Index()
         {
             return View();
-        } public ActionResult Add()
+        }
+        [HttpGet]
+        public ActionResult Add()
         {
             ViewBag.CategoryList = GetCategorySelectList();
+
             return View();
         }
 
@@ -29,44 +31,117 @@ namespace Admin.Web.UI.Controllers
         {
             try
             {
-                model.TaxRate /= 100;
                 if (model.SupCategoryId == 0) model.SupCategoryId = null;
-                //yanlış girişlerde yanlış girdiktn snra verileri grei getirir ve kırmızı mesajı verir.
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    ModelState.AddModelError("CategoryName", "100 karakteri geçemezsiniz");
+                    ModelState.AddModelError("CategoryName", "100 karakteri geçme kardeş");
                     model.SupCategoryId = model.SupCategoryId ?? 0;
                     ViewBag.CategoryList = GetCategorySelectList();
                     return View(model);
                 }
-                if (model.SupCategoryId>0)
+
+                if (model.SupCategoryId > 0)
                 {
                     model.TaxRate = new CategoryRepo().GetById(model.SupCategoryId).TaxRate;
                 }
                 new CategoryRepo().Insert(model);
                 TempData["Message"] = $"{model.CategoryName} isimli kategori başarıyla eklenmiştir";
-                return RedirectToAction("Error","Home");
+                return RedirectToAction("Add");
             }
             catch (DbEntityValidationException ex)
             {
                 TempData["Model"] = new ErrorViewModel()
                 {
-                    Text=$"Bir hata oluştu{EntityHelpers.ValidationMessage(ex)}",
-                    ActionName="Add",
-                    ControllerName="Category"
+                    Text = $"Bir hata oluştu: {EntityHelpers.ValidationMessage(ex)}",
+                    ActionName = "Add",
+                    ControllerName = "Category",
+                    ErrorCode = 500
                 };
-                return RedirectToAction("Error","Home");
+                return RedirectToAction("Error", "Home");
             }
             catch (Exception ex)
             {
                 TempData["Model"] = new ErrorViewModel()
                 {
-                    Text = $"Bir hata oluştu{ex.Message}",
+                    Text = $"Bir hata oluştu: {ex.Message}",
                     ActionName = "Add",
-                    ControllerName = "Category"
+                    ControllerName = "Category",
+                    ErrorCode = 500
                 };
-                return RedirectToAction("Add");
+                return RedirectToAction("Error", "Home");
             }
         }
+
+        [HttpGet]
+        public ActionResult Update(int id = 0)
+        {
+            ViewBag.CategoryList = GetCategorySelectList();
+            var data = new CategoryRepo().GetById(id);
+            if (data == null)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Kategori Bulunamadı",
+                    ActionName = "Add",
+                    ControllerName = "Category",
+                    ErrorCode = 404
+                };
+                return RedirectToAction("Error", "Home");
+            }
+
+            return View(data);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Update(Category model)
+        {
+            try
+            {
+                if (model.SupCategoryId == 0) model.SupCategoryId = null;
+                if (!ModelState.IsValid)
+                {
+                    model.SupCategoryId = model.SupCategoryId ?? 0;
+                    ViewBag.CategoryList = GetCategorySelectList();
+                    return View(model);
+                }
+
+                if (model.SupCategoryId > 0)
+                {
+                    model.TaxRate = new CategoryRepo().GetById(model.SupCategoryId).TaxRate;
+                }
+                var data = new CategoryRepo().GetById(model.Id);
+                data.CategoryName = model.CategoryName;
+                data.TaxRate = model.TaxRate;
+                data.SupCategoryId = model.SupCategoryId;
+                new CategoryRepo().Update(data);
+                TempData["Message"] = $"{model.CategoryName} isimli kategori başarıyla güncellenmiştir";
+                ViewBag.CategoryList = GetCategorySelectList();
+                return View(data);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu: {EntityHelpers.ValidationMessage(ex)}",
+                    ActionName = "Add",
+                    ControllerName = "Category",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu: {ex.Message}",
+                    ActionName = "Add",
+                    ControllerName = "Category",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
     }
 }
