@@ -48,6 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201902010837313_a1.cs" />
+    <Compile Include="Migrations\201902010837313_a1.Designer.cs">
+      <DependentUpon>201902010837313_a1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902010846298_a2.cs" />
+    <Compile Include="Migrations\201902010846298_a2.Designer.cs">
+      <DependentUpon>201902010846298_a2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +69,14 @@
       <Project>{21b25e6b-9ce4-48b2-a6e4-577c79f0c228}</Project>
       <Name>Admin.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902010837313_a1.resx">
+      <DependentUpon>201902010837313_a1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902010846298_a2.resx">
+      <DependentUpon>201902010846298_a2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

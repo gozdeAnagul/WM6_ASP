@@ -34,7 +34,7 @@ namespace Admin.Web.UI.Controllers
                 if (model.SupCategoryId == 0) model.SupCategoryId = null;
                 if (!ModelState.IsValid)
                 {
-                    ModelState.AddModelError("CategoryName", "100 karakteri geçme.");
+                    ModelState.AddModelError("CategoryName", "100 karakteri geçme kardeş");
                     model.SupCategoryId = model.SupCategoryId ?? 0;
                     ViewBag.CategoryList = GetCategorySelectList();
                     return View(model);
@@ -115,6 +115,24 @@ namespace Admin.Web.UI.Controllers
                 data.TaxRate = model.TaxRate;
                 data.SupCategoryId = model.SupCategoryId;
                 new CategoryRepo().Update(data);
+                foreach (var dataCategory in data.Categories)
+                {
+                    dataCategory.TaxRate = data.TaxRate;
+                    new CategoryRepo().Update(dataCategory);
+                    if (dataCategory.Categories.Any())
+                        UpdateSubTaxRate(dataCategory.Categories);
+                }
+
+                void UpdateSubTaxRate(ICollection<Category> dataC)
+                {
+                    foreach (var dataCategory in dataC)
+                    {
+                        dataCategory.TaxRate = data.TaxRate;
+                        new CategoryRepo().Update(dataCategory);
+                        if (dataCategory.Categories.Any())
+                            UpdateSubTaxRate(dataCategory.Categories);
+                    }
+                }
                 TempData["Message"] = $"{model.CategoryName} isimli kategori başarıyla güncellenmiştir";
                 ViewBag.CategoryList = GetCategorySelectList();
                 return View(data);

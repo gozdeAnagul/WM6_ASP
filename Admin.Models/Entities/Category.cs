@@ -1,27 +1,21 @@
 ﻿using Admin.Models.Abstracts;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Admin.Models.Entities
 {
     [Table("Categories")]
-   public class Category:BaseEntity<int>
+    public class Category : BaseEntity<int>
     {
-        private decimal _taxRate;
-        [StringLength(100,ErrorMessage ="Kategori adi 3-100 karakter arasında olmalıdır",MinimumLength =3)]
+        [StringLength(100, ErrorMessage = "Kategori Adı 3 ile 100 karakter arasında olabilir", MinimumLength = 3)]
         [DisplayName("Kategori Adı")]
         [Required]
         public string CategoryName { get; set; }
         [Range(0, 99)]
-        [DisplayName("Kdv Oranı")]
+        [DisplayName("KDV Oranı")]
         public decimal TaxRate { get; set; }
-       
         [DisplayName("Üst Kategori")]
         public int? SupCategoryId { get; set; }
 

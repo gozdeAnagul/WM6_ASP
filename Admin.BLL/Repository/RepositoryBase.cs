@@ -1,19 +1,17 @@
-﻿using Admin.DAL;
-using Admin.Models.Abstracts;
-using Microsoft.Xrm.Sdk;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EntityState = System.Data.Entity.EntityState;
+using Admin.DAL;
+using Admin.Models.Abstracts;
 
 namespace Admin.BLL.Repository
 {
-    public class RepositoryBase<T,TId>:IDisposable where T:BaseEntity<TId>
+    public abstract class RepositoryBase<T, TId> : IDisposable where T : BaseEntity<TId>
     {
-        protected internal static MyContext DbContext;
+        internal static MyContext DbContext;
         private static DbSet<T> DbObject;
 
         protected RepositoryBase()
@@ -81,24 +79,27 @@ namespace Admin.BLL.Repository
         {
             return DbContext.SaveChanges();
         }
-        public async Task<int> UpdateAsync()
+        public async Task<int> SaveAsync()
         {
             return await DbContext.SaveChangesAsync();
         }
-        public void Update(T entity)
+        public int Update(T entity)
         {
             DbObject.Attach(entity);
             DbContext.Entry(entity).State = EntityState.Modified;
             entity.UpdatedDate = DateTime.Now;
-            this.Save();
+            return this.Save();
         }
 
+        public IQueryable<T> Queryable()
+        {
+            return DbObject;
+        }
         public bool IsDisposed { get; set; }
         public void Dispose()
         {
             GC.SuppressFinalize(this);
             this.IsDisposed = true;
         }
-
     }
 }
