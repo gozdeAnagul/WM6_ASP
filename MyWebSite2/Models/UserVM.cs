@@ -9,6 +9,7 @@ namespace MyWebSite2.Models
 {
     public class UserVM
     {
+        [Key]
         public int UserId { get; set; }
 
         [Required(ErrorMessage ="Lütfen isim alanını boş geçmeyin")]
