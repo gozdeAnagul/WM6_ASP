@@ -9,7 +9,7 @@ namespace MyWebSite2.Models
 {
     public class UserVM
     {
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         [Required(ErrorMessage ="Lütfen isim alanını boş geçmeyin")]
         [MaxLength(20,ErrorMessage ="İsim alanı 20 karakterden fazla olamaz")]
