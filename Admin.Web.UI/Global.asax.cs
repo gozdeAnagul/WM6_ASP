@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Admin.BLL.Identity;
+using Admin.Models.IdentityModels;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +16,21 @@ namespace Admin.Web.UI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            var roller = new string[] { "Admin", "User" };
+            var roleMenager = MembershipTools.NewRoleMenager();
+            foreach (var rol in roller)
+            {
+                if (!roleMenager.RoleExists(rol))
+                {
+                    roleMenager.Create(new Role
+                    {
+                        Name =rol
+                    });
+                }
+            }
         }
+
+         
     }
 }
