@@ -92,7 +92,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Helpers\EntityHelpers.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
@@ -104,6 +103,8 @@
     <Compile Include="Repository\ProductRepo.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Services\BercodeService.cs" />
+    <Compile Include="Services\Senders\EmailService.cs" />
+    <Compile Include="Services\Senders\IMessageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

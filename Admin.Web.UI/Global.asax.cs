@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-
+using static Admin.BLL.Identity.MembershipTools;
 namespace Admin.Web.UI
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -18,12 +18,12 @@ namespace Admin.Web.UI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             var roller = new string[] { "Admin", "User" };
-            var roleMenager = MembershipTools.NewRoleMenager();
+            var roleManager = NewRoleManager();
             foreach (var rol in roller)
             {
-                if (!roleMenager.RoleExists(rol))
+                if (!roleManager.RoleExists(rol))
                 {
-                    roleMenager.Create(new Role
+                    roleManager.Create(new Role
                     {
                         Name =rol
                     });
