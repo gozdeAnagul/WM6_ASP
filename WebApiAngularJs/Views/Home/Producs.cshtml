@@ -1,0 +1,25 @@
+﻿
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Producs</title>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/app.js"></script>
+</head>
+<body>
+    <div class="main" ng-controller="ProductCtrl">
+        {{urunler}}
+        <br />5
+        <form name="urunekle">
+            <input type="number" placeholder="Ürün Adi" ng-model="yeni.urunadi" /><br />
+            <input type="number" placeholder="Fiyat" ng-model="yeni.fiyat" /><br />
+            <input type="button" placeholder="Toplam" ng-change="topla()" /><br />
+        </form>
+    </div>
+</body>
+</html>
