@@ -13,7 +13,6 @@ namespace Admin.Web.UI.Controllers
             var data = new List<string>();
             return PartialView("Partial/_DrawerPartial", data);
         }
-
         public PartialViewResult HeaderPartial()
         {
             return PartialView("Partial/_HeaderPartial");

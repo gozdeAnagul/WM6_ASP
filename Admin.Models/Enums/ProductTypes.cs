@@ -5,8 +5,8 @@ namespace Admin.Models.Enums
     public enum ProductTypes
     {
         [Description("Toptan")]
-        Bulk=10,
-        [Description("Parakende")]
-        Retail=100
+        Bulk = 10,
+        [Description("Perakende")]
+        Retail = 100
     }
 }

@@ -1,13 +1,10 @@
-﻿using Admin.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Admin.Models.Entities;
 
 namespace Admin.BLL.Repository
 {
-    public class OrderRepo:RepositoryBase<Order,long>
+    public class OrderRepo : RepositoryBase<Order, long>
     {
+
     }
 }

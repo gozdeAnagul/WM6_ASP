@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Admin.BLL.Helpers;
 using Admin.Models.Entities;
+using Admin.Models.Enums;
 using Admin.Models.ViewModels;
 
 namespace Admin.Web.UI.Controllers
@@ -18,7 +19,7 @@ namespace Admin.Web.UI.Controllers
             return View();
         }
         [HttpGet]
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add()
         {
             ViewBag.CategoryList = GetCategorySelectList();
@@ -28,6 +29,7 @@ namespace Admin.Web.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add(Category model)
         {
             try
@@ -74,6 +76,7 @@ namespace Admin.Web.UI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id = 0)
         {
             ViewBag.CategoryList = GetCategorySelectList();
@@ -95,6 +98,7 @@ namespace Admin.Web.UI.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(Category model)
         {
             try
@@ -120,7 +124,7 @@ namespace Admin.Web.UI.Controllers
                 {
                     dataCategory.TaxRate = data.TaxRate;
                     new CategoryRepo().Update(dataCategory);
-                    if (dataCategory.Categories.Any())
+                    if(dataCategory.Categories.Any())
                         UpdateSubTaxRate(dataCategory.Categories);
                 }
 

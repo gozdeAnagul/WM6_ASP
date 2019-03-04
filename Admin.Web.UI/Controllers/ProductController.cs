@@ -75,7 +75,6 @@ namespace Admin.Web.UI.Controllers
             }
         }
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public JsonResult CheckBarcode(string barcode)
         {
             try

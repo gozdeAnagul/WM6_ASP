@@ -4,11 +4,13 @@ using Admin.Models.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Admin.BLL.Identity;
 using Admin.Models.Enums;
 
 namespace Admin.Web.UI.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class BaseController : Controller
     {
         protected List<SelectListItem> GetCategorySelectList()
@@ -135,6 +137,38 @@ namespace Admin.Web.UI.Controllers
             }
 
             return list;
+        }
+
+        protected List<SelectListItem> GetUserList()
+        {
+            var data = new List<SelectListItem>();
+            MembershipTools.NewUserStore().Users
+                .ToList()
+                .ForEach(x =>
+                {
+                    data.Add(new SelectListItem()
+                    {
+                        Text = $"{x.Name} {x.Surname}",
+                        Value = x.Id
+                    });
+                });
+            return data;
+        }
+
+        protected List<SelectListItem> GetRoleList()
+        {
+            var data = new List<SelectListItem>();
+            MembershipTools.NewRoleStore().Roles
+                .ToList()
+                .ForEach(x =>
+                {
+                    data.Add(new SelectListItem()
+                    {
+                        Text = $"{x.Name}",
+                        Value = x.Id
+                    });
+                });
+            return data;
         }
     }
 }

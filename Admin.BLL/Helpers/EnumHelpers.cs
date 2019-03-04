@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Admin.BLL.Helpers
 {
@@ -12,8 +7,8 @@ namespace Admin.BLL.Helpers
         public static string GetDescription<T>(T item)
         {
             var descriptionAttributes = typeof(T)
-
-                .GetMember(typeof(T).GetEnumName(item))[0]
+                .GetMember(typeof(T)
+                .GetEnumName(item))[0]
                 .GetCustomAttributes(typeof(DescriptionAttribute), false)[0];
 
             return ((DescriptionAttribute)descriptionAttributes).Description;

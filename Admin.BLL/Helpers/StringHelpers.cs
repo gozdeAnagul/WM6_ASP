@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Admin.BLL.Helpers
 {
     public static class StringHelpers
     {
-        //string dönüştüren method
         public static string UrlFormatConverter(string name)
         {
             string sonuc = name.ToLower();
@@ -50,13 +45,13 @@ namespace Admin.BLL.Helpers
             foreach (var item in items)
             {
                 if (item.Length > 1)
-                    result += $"{(item.Substring(0, 1).ToUpper())}{item.Substring(1).ToLower()}";
+                    result += $"{(item.Substring(0, 1).ToUpper())}{item.Substring(1).ToLower()} ";
                 else
-                    result += $"{item}";
+                    result += $"{item} ";
             }
             return result.Trim();
         }
 
-        public static string GetCode()=>Regex.Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()),"[/+=]","").ToLower(new CultureInfo("en-US",false));
+        public static string GetCode() => Regex.Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()), "[/+=]", "").ToLower(new CultureInfo("en-US", false));
     }
 }
