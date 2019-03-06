@@ -6,9 +6,9 @@ namespace Rabbit.BLL.RabbitMq
     public class RabbitMqService
     {
         // localhost üzerinde kurulu olduğu için host adresi olarak bunu kullanıyorum.
-        private readonly string _hostName = "192.168.1.200",
-            _userName = "mesut",
-            _password = "1234";
+        private readonly string _hostName = "Wissen",
+            _userName = "gozde",
+            _password = "123456";
 
         public IConnection GetRabbitMqConnection()
         {
