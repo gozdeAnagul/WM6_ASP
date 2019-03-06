@@ -34,10 +34,8 @@ app.controller("customerCtrl", function ($scope, $http) {
                 store: {
                     type: "odata",
                     url: '/odata/CustomerOdata',
-                    key: ["Id"],
-                    keyType: {
-                        Id: "Int32"
-                    }
+                    key: "Id"
+                 
                 }
             },
             editing: {
@@ -69,6 +67,19 @@ app.controller("customerCtrl", function ($scope, $http) {
             },
             headerFilter: {
                 visible: true
+            },
+            onRowUpdating: function (e) {
+                console.log("RowUpdating");
+                for (var propertyName in e.newData) {
+                    console.log(propertyName);
+                    e.oldData[propertyName] = e.newData[propertyName];
+                }
+                e.newData = e.oldData;
+                console.log(e);
+            },
+            onRowUpdated: function (e) {
+                console.log("RowUpdated");
+                console.log(e);
             },
             columns: [
                 {

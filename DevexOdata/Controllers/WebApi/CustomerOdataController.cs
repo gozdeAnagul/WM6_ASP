@@ -36,7 +36,7 @@ namespace DevexOdata.Controllers.WebApi
         // PUT: odata/CustomerOdata(5)
         public IHttpActionResult Put([FromODataUri] int key, Delta<Customer> patch)
         {
-            Validate(patch.GetEntity());
+            //Validate(patch.GetEntity());
 
             if (!ModelState.IsValid)
             {
