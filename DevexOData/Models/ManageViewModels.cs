@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace DevexOData.Models
+namespace DevexOdata.Models
 {
     public class IndexViewModel
     {

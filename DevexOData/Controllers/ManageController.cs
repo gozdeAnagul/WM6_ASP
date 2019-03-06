@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using DevexOData.Models;
+using DevexOdata.Models;
 
-namespace DevexOData.Controllers
+namespace DevexOdata.Controllers
 {
     [Authorize]
     public class ManageController : Controller

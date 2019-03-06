@@ -1,38 +1,34 @@
 ﻿/// <reference path="angular.js" />
-var host = "http://localhost:49677/"
-var app = angular.module("myApp", ["dx"]);
 
+var app = angular.module("myApp", ["dx"]);
+var host = 'http://localhost:61757/';
 app.controller("testCtrl", function ($scope) {
 
     $scope.dataGridOptions = {
         dataSource: customers,
-        columns: ["CompanyName", "City", "State", "Phone", "Website", "Fax"],
-        showBorders: true,
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: "Ara..."
-        }
+        columns: ["CompanyName", "City", "State", "Phone", "Fax"],
+        showBorders: true
     };
+
 });
 
 app.controller("customerCtrl", function ($scope, $http) {
     $scope.data = null;
     function init() {
-        $http({
-            url: host + 'api/customer/getall',
-            method: 'GET'
-        }).then(function (ev) {
-            if (ev.data.success) {
-                $scope.data = ev.data.data;
-                loadGrid();
-            }
-        });
+        //$http({
+        //    url: host + 'api/customer/getall',
+        //    method: 'GET'
+        //}).then(function (ev) {
+        //    if (ev.data.success) {
+        //        $scope.data = ev.data.data;
+        //        loadGrid();
+        //    }
+        //});
+        loadGrid();
     }
 
     function loadGrid() {
         $scope.dataGridOptions = {
-           // dataSource: $scope.data,
             keyExpr: "Id",
             dataSource: {
                 store: {
@@ -49,16 +45,16 @@ app.controller("customerCtrl", function ($scope, $http) {
                 allowUpdating: true,
                 allowDeleting: true,
                 allowAdding: true
-            },
+            }, 
             selection: {
                 mode: "multiple"
             },
             onSelectionChanged: function (selected) {
-                $scope.selected = selected.selectedRowData;
+                $scope.selected = selected.selectedRowsData;
             },
-            export: {
+            "export": {
                 enabled: true,
-                fileName: "Customers" + parseInt(Math.random() * 100000),
+                fileName: "Customers_" + parseInt(Math.random() * 100000),
                 allowExportSelectedData: true
             },
             columnChooser: {
@@ -66,25 +62,23 @@ app.controller("customerCtrl", function ($scope, $http) {
                 allowSearch: true
             },
             groupPanel: {
-                visible:true
-            }, 
-            filterRow: {
-                visible:true
+                visible: true
             },
-            headerFilter:{
-                visible:true
+            filterRow: {
+                visible: true
+            },
+            headerFilter: {
+                visible: true
             },
             columns: [
                 {
                     dataField: "Id",
-                    caption: "Customer No",
+                    caption: "Müşteri No",
                     visible: false
-                },
-                {
+                }, {
                     dataField: "Name",
                     groupIndex: 0
-                }, "Surname", "Phone",
-                {
+                }, "Surname", "Phone", {
                     dataField: "Address",
                     allowHeaderFiltering: false
                 },
@@ -100,10 +94,9 @@ app.controller("customerCtrl", function ($scope, $http) {
             },
             pager: {
                 showPageSizeSelector: true,
-                allowedPageSzies: [5, 10, 25],
+                allowedPageSizes: [5, 10, 20],
                 showInfo: true
             },
-            showBorders: true,
             searchPanel: {
                 visible: true,
                 width: 240,
@@ -119,7 +112,7 @@ app.controller("customerCtrl", function ($scope, $http) {
                 //    {
                 //        column: "Name",
                 //        summaryType: "count",
-                //        displayFormat:"toplam: {0}"
+                //        displayFormat: "Toplam: {0}"
                 //    },
                 //    {
                 //        column: "Balance",
@@ -127,15 +120,13 @@ app.controller("customerCtrl", function ($scope, $http) {
                 //        displayFormat: "Ortalama: {0}",
                 //        alignByColumn: true,
                 //        valueFormat: "#,##0.## ₺"
-                //    }
-                //]
+                //    }]
             }
         };
     }
 
     init();
 });
-
 
 var customers = [{
     "ID": 1,

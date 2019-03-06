@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DevexOData.Models
+namespace DevexOdata.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

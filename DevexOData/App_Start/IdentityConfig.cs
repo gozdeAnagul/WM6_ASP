@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using DevexOData.Models;
+using DevexOdata.Models;
 
-namespace DevexOData
+namespace DevexOdata
 {
     public class EmailService : IIdentityMessageService
     {

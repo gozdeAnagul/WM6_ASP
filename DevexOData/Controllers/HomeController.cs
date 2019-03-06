@@ -1,11 +1,11 @@
-﻿using DevexOData.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DevexOdata.Models;
 
-namespace DevexOData.Controllers
+namespace DevexOdata.Controllers
 {
     public class HomeController : Controller
     {
@@ -26,7 +26,7 @@ namespace DevexOData.Controllers
                     Name = FakeData.NameData.GetFirstName(),
                     Address = FakeData.PlaceData.GetAddress(),
                     Balance = FakeData.NumberData.GetNumber(1250, 99999),
-                    Phone = "05" + FakeData.PhoneNumberData.GetPhoneNumber().Replace("-", "").Substring(0, 10),
+                    Phone = "05" + FakeData.PhoneNumberData.GetPhoneNumber().Replace("-", "").Substring(0,10),
                     Surname = FakeData.NameData.GetSurname()
                 });
                 if (i % 100 == 0)

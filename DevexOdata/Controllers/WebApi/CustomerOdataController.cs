@@ -10,39 +10,30 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
-using DevexOData.Models;
+using DevexOdata.Models;
 
-namespace DevexOData.Controllers.WebApi
+namespace DevexOdata.Controllers.WebApi
 {
-    /*
-    The WebApiConfig class may require additional changes to add a route for this controller. Merge these statements into the Register method of the WebApiConfig class as applicable. Note that OData URLs are case sensitive.
-
-    using System.Web.Http.OData.Builder;
-    using System.Web.Http.OData.Extensions;
-    using DevexOData.Models;
-    ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<Customer>("CustomersOData");
-    config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
-    */
-    public class CustomersODataController : ODataController
+  
+    public class CustomerOdataController : ODataController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: odata/CustomersOData
+        // GET: odata/CustomerOdata
         [EnableQuery(MaxExpansionDepth = 1)]
-        public IQueryable<Customer> GetCustomersOData()
+        public IQueryable<Customer> GetCustomerOdata()
         {
             return db.Customers;
         }
 
-        // GET: odata/CustomersOData(5)
+        // GET: odata/CustomerOdata(5)
         [EnableQuery]
         public SingleResult<Customer> GetCustomer([FromODataUri] int key)
         {
             return SingleResult.Create(db.Customers.Where(customer => customer.Id == key));
         }
 
-        // PUT: odata/CustomersOData(5)
+        // PUT: odata/CustomerOdata(5)
         public IHttpActionResult Put([FromODataUri] int key, Delta<Customer> patch)
         {
             Validate(patch.GetEntity());
@@ -79,7 +70,7 @@ namespace DevexOData.Controllers.WebApi
             return Updated(customer);
         }
 
-        // POST: odata/CustomersOData
+        // POST: odata/CustomerOdata
         public IHttpActionResult Post(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -93,7 +84,7 @@ namespace DevexOData.Controllers.WebApi
             return Created(customer);
         }
 
-        // PATCH: odata/CustomersOData(5)
+        // PATCH: odata/CustomerOdata(5)
         [AcceptVerbs("PATCH", "MERGE")]
         public IHttpActionResult Patch([FromODataUri] int key, Delta<Customer> patch)
         {
@@ -131,7 +122,8 @@ namespace DevexOData.Controllers.WebApi
             return Updated(customer);
         }
 
-        // DELETE: odata/CustomersOData(5)
+        // DELETE: odata/CustomerOdata(5)
+        [HttpDelete]
         public IHttpActionResult Delete([FromODataUri] int key)
         {
             Customer customer = db.Customers.Find(key);
