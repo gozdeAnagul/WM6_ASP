@@ -13,11 +13,11 @@ namespace Rabbit.Model.Entities
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
-        [Required, StringLength(50)]
+       
         public string Message { get; set; }
-        [Required, StringLength(50)]
+      
         public string Subject { get; set; }
-        [Required, StringLength(11)]
+       
         public Guid CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
