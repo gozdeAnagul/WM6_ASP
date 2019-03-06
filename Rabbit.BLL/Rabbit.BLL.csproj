@@ -65,14 +65,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rabbit.DAL\Rabbit.DAL.csproj">
-      <Project>{da9f7a37-3b00-40d4-943c-97e11ed8cb35}</Project>
+      <Project>{5af9a2ad-5a47-4426-bb2a-b02abcfcfb3b}</Project>
       <Name>Rabbit.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Rabbit.Model\Rabbit.Model.csproj">
-      <Project>{a0543504-4c4d-4001-9a09-6f644e1a2260}</Project>
-      <Name>Rabbit.Model</Name>
+    <ProjectReference Include="..\Rabbit.Models\Rabbit.Models.csproj">
+      <Project>{e2c77bba-65c2-434b-bb4a-13c25a7bd967}</Project>
+      <Name>Rabbit.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

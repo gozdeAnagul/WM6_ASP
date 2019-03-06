@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Rabbit.Web.MVC")]
+[assembly: AssemblyTitle("Rabbit.Web.Mvc")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Rabbit.Web.MVC")]
+[assembly: AssemblyProduct("Rabbit.Web.Mvc")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8cd8c8a0-4496-429f-8688-abc05e83f688")]
+[assembly: Guid("0fe67db2-64b7-4329-ac59-d64efda1df65")]
 
 // Version information for an assembly consists of the following four values:
 //

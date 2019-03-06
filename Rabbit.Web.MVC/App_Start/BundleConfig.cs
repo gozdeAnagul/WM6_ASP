@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Rabbit.Web.MVC
+namespace Rabbit.Web.Mvc
 {
     public class BundleConfig
     {

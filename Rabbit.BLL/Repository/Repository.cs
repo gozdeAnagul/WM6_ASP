@@ -1,4 +1,4 @@
-﻿using Rabbit.Model.Entities;
+﻿using Rabbit.Models.Entities;
 using System;
 
 namespace Rabbit.BLL.Repository

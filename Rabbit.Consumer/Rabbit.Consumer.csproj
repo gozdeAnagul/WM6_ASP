@@ -42,8 +42,8 @@
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\packages\RabbitMQ.Client.5.1.0\lib\net451\RabbitMQ.Client.dll</HintPath>
@@ -96,12 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rabbit.BLL\Rabbit.BLL.csproj">
-      <Project>{bf3a3b3b-9b48-4720-93f3-ea3f5ced3792}</Project>
+      <Project>{0ce53f1c-5ffa-414b-bafb-a2ac79ab94c1}</Project>
       <Name>Rabbit.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Rabbit.Model\Rabbit.Model.csproj">
-      <Project>{a0543504-4c4d-4001-9a09-6f644e1a2260}</Project>
-      <Name>Rabbit.Model</Name>
+    <ProjectReference Include="..\Rabbit.Models\Rabbit.Models.csproj">
+      <Project>{e2c77bba-65c2-434b-bb4a-13c25a7bd967}</Project>
+      <Name>Rabbit.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

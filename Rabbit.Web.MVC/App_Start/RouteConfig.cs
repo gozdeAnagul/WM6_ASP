@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Rabbit.Web.MVC
+namespace Rabbit.Web.Mvc
 {
     public class RouteConfig
     {

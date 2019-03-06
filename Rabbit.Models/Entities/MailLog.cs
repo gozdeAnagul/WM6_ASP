@@ -6,18 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rabbit.Model.Entities
+namespace Rabbit.Models.Entities
 {
     [Table("MailLogs")]
-    public class MailLog
+   public class MailLog
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
-       
+
         public string Message { get; set; }
-      
         public string Subject { get; set; }
-       
         public Guid CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
